@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Generator</title>
+    <style>
+        #image-container {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        #generated-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Generator</h1>
+    <form action="/" method="POST">
+        <label for="query">Enter the type of image you want to generate:</label>
+        <input type="text" name="query" id="query">
+        <input type="submit" value="Generate Image">
+    </form>
+
+    <div id="image-container">
+        {% if image_data %}
+        <img id="generated-image" src="data:image/jpeg;base64,{{ image_data }}" alt="Generated Image">
+        <br>
+        <a href="data:image/jpeg;base64,{{ image_data }}" download="generated_image.jpg">Download Image</a>
+        {% endif %}
+    </div>
+</body>
+</html>
