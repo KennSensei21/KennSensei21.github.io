@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Image Generator</title>
-    <style>
-        #image-container {
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        #generated-image {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+  <title>Image Generator</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function generateImage() {
+      var query = $('#query').val();
+      var unsplashApiKey = 'GUjY0Tv_z0L4DZ_fdgDEorKsS1vteOQ3G71XvnJ4B5s';
+
+      var apiUrl = 'https://api.unsplash.com/photos/random?client_id=' + unsplashApiKey + '&query=' + query + '&orientation=landscape';
+
+      $.getJSON(apiUrl, function(data) {
+        var imageUrl = data.urls.raw;
+
+        var image = new Image();
+        image.src = imageUrl;
+
+        image.onload = function() {
+          $('#image-container').empty().append(image);
+          $('#download-button').attr('href', imageUrl);
+          $('#download-button').show();
+        };
+      });
+    }
+  </script>
 </head>
 <body>
-    <h1>Image Generator</h1>
-    <form action="/" method="POST">
-        <label for="query">Enter the type of image you want to generate:</label>
-        <input type="text" name="query" id="query">
-        <input type="submit" value="Generate Image">
-    </form>
-
-    <div id="image-container">
-        {% if image_data %}
-        <img id="generated-image" src="data:image/jpeg;base64,{{ image_data }}" alt="Generated Image">
-        <br>
-        <a href="data:image/jpeg;base64,{{ image_data }}" download="generated_image.jpg">Download Image</a>
-        {% endif %}
-    </div>
+  <h1>Image Generator</h1>
+  <input type="text" id="query" placeholder="Enter image query">
+  <button onclick="generateImage()">Generate</button>
+  <div id="image-container"></div>
+  <a id="download-button" href="#" download style="display: none;">Download</a>
 </body>
 </html>
