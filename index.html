@@ -2,6 +2,48 @@
 <html>
 <head>
   <title>Image Generator</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      height: 30px;
+      font-size: 16px;
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      height: 30px;
+      font-size: 16px;
+      padding: 5px 10px;
+    }
+
+    #image-container {
+      margin-top: 20px;
+    }
+
+    #image-container img {
+      max-width: 500px;
+      max-height: 500px;
+    }
+
+    #download-button {
+      display: none;
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+    }
+  </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     function generateImage() {
@@ -30,6 +72,6 @@
   <input type="text" id="query" placeholder="Enter image query">
   <button onclick="generateImage()">Generate</button>
   <div id="image-container"></div>
-  <a id="download-button" href="#" download style="display: none;">Download</a>
+  <a id="download-button" href="#" download>Download</a>
 </body>
 </html>
