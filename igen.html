@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Generator</title>
+  <style>
+      
+      
+         
+        .topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    body {
+      text-align: center;
+      background-color: #f1f1f1;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-top: 40px;
+    }
+
+    .container {
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      height: 40px;
+      font-size: 16px;
+      padding: 5px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      height: 40px;
+      font-size: 16px;
+      padding: 5px 15px;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    #image-container {
+      margin-top: 20px;
+    }
+
+    #image-container img {
+      max-width: 100%;
+      border-radius: 4px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #download-button {
+      display: none;
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+      border-radius: 4px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function generateImage() {
+      var query = $('#query').val();
+      var unsplashApiKey = 'GUjY0Tv_z0L4DZ_fdgDEorKsS1vteOQ3G71XvnJ4B5s';
+
+      var apiUrl = 'https://api.unsplash.com/photos/random?client_id=' + unsplashApiKey + '&query=' + query + '&orientation=landscape';
+
+      $.getJSON(apiUrl, function(data) {
+        var imageUrl = data.urls.raw;
+
+        var image = new Image();
+        image.src = imageUrl;
+
+        image.onload = function() {
+          $('#image-container').empty().append(image);
+          $('#download-button').attr('href', imageUrl);
+          $('#download-button').show();
+        };
+      });
+    }
+  </script>
+</head>
+<body>
+    
+    
+ <div class="topnav">
+  <a class="active" href="index.html">Home</a>
+  <a href="joke.html">Non-Funny Jokes</a>
+  <a href="igen.html">Image Generator</a>
+  <a href="Doggo.html">Dogs</a>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  <div class="container">
+    <h1>Image Generator</h1>
+    <div class="input-group">
+      <input type="text" id="query" placeholder="Enter image query">
+      <button onclick="generateImage()">Generate</button>
+    </div>
+    <div id="image-container"></div>
+    <a id="download-button" href="#" download>Download</a>
+  </div>
+       <footer>
+        <p>&copy; 2023 Mady by Pranshu Sharma. All rights reserved.</p>
+    </footer>
+</body>
+</html>
