@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Facts and Pictures</title>
+    <style>
+        
+        
+           
+        .topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        #dog-picture {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        #fact {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #name {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    
+    
+    <div class="topnav">
+  <a class="active" href="welcome.html">Home</a>
+  <a href="joke.html">Non-Funny Jokes</a>
+  <a href="index.html">Image Generator</a>
+  <a href="Doggo.html">Dogs</a>
+</div>
+    
+    
+    <div class="container">
+        <h1>Random Dog Facts and Pictures</h1>
+        <button class="btn" onclick="fetchDogData()">Get Random Dog</button>
+        <div id="dog-info" style="display: none;">
+            <img id="dog-picture" src="" alt="Dog Picture">
+            <p id="fact"></p>
+            <p id="name"></p>
+        </div>
+    </div>
+
+    <script>
+        function fetchDogData() {
+            $.ajax({
+                url: 'https://api.thedogapi.com/v1/images/search',
+                method: 'GET',
+                headers: {
+                    'x-api-key': 'live_EAE3pwv0AilXKo77SH42mxjaxejelPGz8KhxeYPyy6QSzHhJ6fJdqDpBwmMrP96V' // Replace with your Dog API key
+                },
+                success: function(response) {
+                    var dogData = response[0];
+                    var imageUrl = dogData.url;
+                    var fact = dogData.breeds[0].temperament;
+                    var name = dogData.breeds[0].name;
+
+                    $('#dog-picture').attr('src', imageUrl);
+                    $('#fact').text('Fact: ' + fact);
+                    $('#name').text('Name: ' + name);
+
+                    $('#dog-info').show();
+                },
+                error: function() {
+                    $('#dog-info').hide();
+                    alert('Failed to fetch dog data.');
+                }
+            });
+        }
+    </script>
+    <p> WARNING: It takes some time to load</p>
+       <footer>
+        <p>&copy; 2023 Mady by Pranshu Sharma. All rights reserved.</p>
+    </footer>
+</body>
+</html>
